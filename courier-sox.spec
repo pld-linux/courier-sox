@@ -1,6 +1,5 @@
 #
 # TODO:
-#	- pl
 #	- fix build (undefined @LIBNAME@)
 #
 Summary:	Courier Socks 5 client library
@@ -23,6 +22,8 @@ This is a generic Socks 5 client support library. It does not include
 a Socks 5 server (yet). This is just a client-side library.
 
 %description -l pl
+Ogólna biblioteka kliencka Socks 5. Nie zawiera (jeszcze) serwera
+Socks 5, jest tylko bibliotek± dla strony klienta.
 
 %package devel
 Summary:	Socks 5 client header files
@@ -35,6 +36,8 @@ This package contains header files for building applications that
 use Socks 5 proxies.
 
 %description devel -l pl
+Ten pakiet zawiera pliki nag³ówkowe do tworzenia aplikacji u¿ywaj±cych
+proxy Socks 5.
 
 %package static
 Summary:	Socks 5 client static libraries
@@ -47,6 +50,8 @@ This package contains static libraries for building applications that
 use Socks 5 proxies.
 
 %description static -l pl
+Ten pakiet zawiera biblioteki statyczne do tworzenia aplikacji
+u¿ywaj±cych proxy Socks 5.
 
 %prep
 %setup -q
@@ -68,12 +73,11 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%post -p /sbin/ldconfig
-
-%postun -p /sbin/ldconfig
-
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
