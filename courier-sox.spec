@@ -1,16 +1,18 @@
 #
 # TODO:
-#	- fix build (undefined @LIBNAME@)
+#	- split server package
 #
 Summary:	Courier Socks 5 client library
 Summary(pl):	Biblioteki klienckie Socks 5
 Name:		courier-sox
-Version:	0.03
+Version:	0.05
 Release:	0.1
 License:	GPL
 Group:		Networking/Daemons
-Source0:	http://dl.sourceforge.net/courier/%{name}-%{version}.tar.bz2
-# Source0-md5:	864511941045f8d4b2517de9e9c660f1
+#Source0:	http://dl.sourceforge.net/courier/%{name}-%{version}.tar.bz2
+Source0:	http://www.courier-mta.org/beta/sox/%{name}-%{version}.tar.bz2
+# Source0-md5:	41a87d18a56dcabd3fc513ceba7b679b
+Patch0:		%{name}-build.patch
 URL:		http://www.courier-mta.org
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -56,6 +58,7 @@ u¿ywaj±cych proxy Socks 5.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__libtoolize}
