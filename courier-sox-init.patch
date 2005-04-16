@@ -1,0 +1,38 @@
+diff -Nur old/courier-sox.sysvinit.in new/courier-sox.sysvinit.in
+--- old/courier-sox.sysvinit.in	2004-12-05 02:24:29.000000000 +0000
++++ new/courier-sox.sysvinit.in	2005-04-16 19:09:43.000000000 +0000
+@@ -5,6 +5,9 @@
+ #
+ #
+ 
++# Source function library
++. /etc/rc.d/init.d/functions
++
+ prefix="@prefix@"
+ exec_prefix="@exec_prefix@"
+ sysconfdir="@sysconfdir@"
+@@ -29,15 +32,23 @@
+ 
+ 	$sbindir/sockd stop
+ 	echo "sockd"
++	rm -f /var/lock/subsys/courier-sox
+         ;;
+ restart)
+ 	$0 stop
+ 	$0 start
+         ;;
+-reload)
++reload|force-reload)
+         echo -n "Reloading the Courier Socks server: "
+ 	$sbindir/sockd restart
+ 	echo "sockd"
+         ;;
++status)
++        status sockd
++	exit $?
++	;;
++*)
++        msg_usage "$0 {start|stop|restart|reload|force-reload|status}"
++	exit 3
+ esac
+ exit 0
