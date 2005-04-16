@@ -1,18 +1,15 @@
-#
-# TODO:
-#	- write/modify init file
-#
 Summary:	Courier Socks 5 client library
 Summary(pl):	Biblioteki klienckie Socks 5
 Name:		courier-sox
 Version:	0.05
-Release:	0.5
+Release:	1
 License:	GPL
 Group:		Networking/Daemons
 #Source0:	http://dl.sourceforge.net/courier/%{name}-%{version}.tar.bz2
 Source0:	http://www.courier-mta.org/beta/sox/%{name}-%{version}.tar.bz2
 # Source0-md5:	41a87d18a56dcabd3fc513ceba7b679b
 Patch0:		%{name}-build.patch
+Patch1:		%{name}-init.patch
 URL:		http://www.courier-mta.org
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -76,6 +73,7 @@ u¿ywaj±cych proxy Socks 5.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__libtoolize}
@@ -142,6 +140,7 @@ fi
 %attr(754,root,root) /etc/rc.d/init.d/courier-sox
 %{_mandir}/man1/sockd*
 %attr(755,root,root) %{_sbindir}/sockd
+%dir %{_libexecdir}
 %attr(755,root,root) %{_libexecdir}/sockd
 
 %files static
