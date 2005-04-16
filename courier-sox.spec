@@ -1,3 +1,7 @@
+#
+# TODO:
+#	- write/modify init file
+#
 Summary:	Courier Socks 5 client library
 Summary(pl):	Biblioteki klienckie Socks 5
 Name:		courier-sox
@@ -15,6 +19,8 @@ BuildRequires:	automake
 BuildRequires:	libtool
 BuildRequires:	libltdl-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_libexecdir	%{_libdir}/courier-sox
 
 %description
 This is a generic Socks 5 client support library. It does not include
@@ -77,7 +83,8 @@ u¿ywaj±cych proxy Socks 5.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%configure
+%configure \
+	--libexecdir=%{_libexecdir}
 
 %{__make}
 %{__make} check
@@ -103,7 +110,7 @@ rm -rf $RPM_BUILD_ROOT
 if [ -f /var/lock/subsys/courier-sox ]; then
 	/etc/rc.d/init.d/courier-sox restart >&2
 else
-	echo "Run \"/etc/rc.d/init.d/courier-sox start\" to start courier-sox
+	echo "Run \"/etc/rc.d/init.d/courier-sox start\" to start courier-sox"
 fi
 
 %preun server
@@ -135,7 +142,7 @@ fi
 %attr(754,root,root) /etc/rc.d/init.d/courier-sox
 %{_mandir}/man1/sockd*
 %attr(755,root,root) %{_sbindir}/sockd
-%{_libdir}/sockd
+%attr(755,root,root) %{_libexecdir}/sockd
 
 %files static
 %defattr(644,root,root,755)
