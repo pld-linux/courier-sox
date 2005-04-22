@@ -2,7 +2,7 @@ Summary:	Courier Socks 5 client library
 Summary(pl):	Biblioteki klienckie Socks 5
 Name:		courier-sox
 Version:	0.05
-Release:	1
+Release:	2
 License:	GPL
 Group:		Networking/Daemons
 #Source0:	http://dl.sourceforge.net/courier/%{name}-%{version}.tar.bz2
@@ -13,6 +13,7 @@ Patch1:		%{name}-init.patch
 URL:		http://www.courier-mta.org
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	courier-authlib-devel
 BuildRequires:	libtool
 BuildRequires:	libltdl-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
