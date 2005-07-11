@@ -21,12 +21,10 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_libexecdir	%{_libdir}/courier-sox
 
 %description
-This is a generic Socks 5 client support library. It does not include
-a Socks 5 server (yet). This is just a client-side library.
+This is a generic Socks 5 client support library.
 
 %description -l pl
-Ogólna biblioteka kliencka Socks 5. Nie zawiera (jeszcze) serwera
-Socks 5, jest tylko bibliotek± dla strony klienta.
+Ogólna biblioteka kliencka Socks 5.
 
 %package devel
 Summary:	Socks 5 client header files
