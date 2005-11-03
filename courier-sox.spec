@@ -6,7 +6,7 @@ Release:	1
 License:	GPL
 Group:		Networking/Daemons
 #Source0:	http://dl.sourceforge.net/courier/%{name}-%{version}.tar.bz2
-Source0:	http://heanet.dl.sourceforge.net/sourceforge/courier/%{name}-%{version}.tar.bz2
+Source0:	http://dl.sourceforge.net/courier/%{name}-%{version}.tar.bz2
 # Source0-md5:	32fde0bf5c755092722894006444dc9f
 Patch0:		%{name}-build.patch
 Patch1:		%{name}-init.patch
