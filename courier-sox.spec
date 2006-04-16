@@ -5,7 +5,6 @@ Version:	0.06
 Release:	1
 License:	GPL
 Group:		Networking/Daemons
-#Source0:	http://dl.sourceforge.net/courier/%{name}-%{version}.tar.bz2
 Source0:	http://dl.sourceforge.net/courier/%{name}-%{version}.tar.bz2
 # Source0-md5:	32fde0bf5c755092722894006444dc9f
 Patch0:		%{name}-build.patch
@@ -14,8 +13,9 @@ URL:		http://www.courier-mta.org
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	courier-authlib-devel
-BuildRequires:	libtool
 BuildRequires:	libltdl-devel
+BuildRequires:	libtool
+BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_libexecdir	%{_libdir}/courier-sox
@@ -44,8 +44,8 @@ proxy Socks 5.
 Summary:	Socks 5 server
 Summary(pl):	Serwer socks 5
 Group:		Networking/Utilities
-Requires:	%{name} = %{version}-%{release}
 Requires(post,preun):	/sbin/chkconfig
+Requires:	%{name} = %{version}-%{release}
 
 %description server
 This package contains the Courier Socks 5 server. Install this package
@@ -106,18 +106,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %post server
 /sbin/chkconfig --add courier-sox
-
-if [ -f /var/lock/subsys/courier-sox ]; then
-	/etc/rc.d/init.d/courier-sox restart >&2
-else
-	echo "Run \"/etc/rc.d/init.d/courier-sox start\" to start courier-sox"
-fi
+%service courier-sox restart
 
 %preun server
 if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/courier-sox ]; then
-		/etc/rc.d/init.d/courier-sox stop
-	fi
+	%service courier-sox stop
 	/sbin/chkconfig --del courier-sox
 fi
 
