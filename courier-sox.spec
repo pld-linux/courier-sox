@@ -1,5 +1,5 @@
 Summary:	Courier Socks 5 client library
-Summary(pl.UTF-8):   Biblioteki klienckie Socks 5
+Summary(pl.UTF-8):	Biblioteki klienckie Socks 5
 Name:		courier-sox
 Version:	0.06
 Release:	1
@@ -28,7 +28,7 @@ Ogólna biblioteka kliencka Socks 5.
 
 %package devel
 Summary:	Socks 5 client header files
-Summary(pl.UTF-8):   Pliki nagłówkowe klienta socks 5
+Summary(pl.UTF-8):	Pliki nagłówkowe klienta socks 5
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -42,7 +42,7 @@ proxy Socks 5.
 
 %package server
 Summary:	Socks 5 server
-Summary(pl.UTF-8):   Serwer socks 5
+Summary(pl.UTF-8):	Serwer socks 5
 Group:		Networking/Utilities
 Requires(post,preun):	/sbin/chkconfig
 Requires:	%{name} = %{version}-%{release}
@@ -57,7 +57,7 @@ serwer socks5, zainstaluj ten pakiet.
 
 %package static
 Summary:	Socks 5 client static libraries
-Summary(pl.UTF-8):   Biblioteki statyczne klienta socks 5
+Summary(pl.UTF-8):	Biblioteki statyczne klienta socks 5
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
