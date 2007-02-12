@@ -1,5 +1,5 @@
 Summary:	Courier Socks 5 client library
-Summary(pl):	Biblioteki klienckie Socks 5
+Summary(pl.UTF-8):   Biblioteki klienckie Socks 5
 Name:		courier-sox
 Version:	0.06
 Release:	1
@@ -23,12 +23,12 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 This is a generic Socks 5 client support library.
 
-%description -l pl
-OgÛlna biblioteka kliencka Socks 5.
+%description -l pl.UTF-8
+Og√≥lna biblioteka kliencka Socks 5.
 
 %package devel
 Summary:	Socks 5 client header files
-Summary(pl):	Pliki nag≥Ûwkowe klienta socks 5
+Summary(pl.UTF-8):   Pliki nag≈Ç√≥wkowe klienta socks 5
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -36,13 +36,13 @@ Requires:	%{name} = %{version}-%{release}
 This package contains header files for building applications that use
 Socks 5 proxies.
 
-%description devel -l pl
-Ten pakiet zawiera pliki nag≥Ûwkowe do tworzenia aplikacji uøywaj±cych
+%description devel -l pl.UTF-8
+Ten pakiet zawiera pliki nag≈Ç√≥wkowe do tworzenia aplikacji u≈ºywajƒÖcych
 proxy Socks 5.
 
 %package server
 Summary:	Socks 5 server
-Summary(pl):	Serwer socks 5
+Summary(pl.UTF-8):   Serwer socks 5
 Group:		Networking/Utilities
 Requires(post,preun):	/sbin/chkconfig
 Requires:	%{name} = %{version}-%{release}
@@ -51,13 +51,13 @@ Requires:	%{name} = %{version}-%{release}
 This package contains the Courier Socks 5 server. Install this package
 if you want to run a Socks 5 server.
 
-%description server -l pl
-Ten pakiet zawiera serwer couriera socks 5. Jeøeli chcesz uruchamiaÊ
+%description server -l pl.UTF-8
+Ten pakiet zawiera serwer couriera socks 5. Je≈ºeli chcesz uruchamiaƒá
 serwer socks5, zainstaluj ten pakiet.
 
 %package static
 Summary:	Socks 5 client static libraries
-Summary(pl):	Biblioteki statyczne klienta socks 5
+Summary(pl.UTF-8):   Biblioteki statyczne klienta socks 5
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
@@ -65,9 +65,9 @@ Requires:	%{name}-devel = %{version}-%{release}
 This package contains static libraries for building applications that
 use Socks 5 proxies.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Ten pakiet zawiera biblioteki statyczne do tworzenia aplikacji
-uøywaj±cych proxy Socks 5.
+u≈ºywajƒÖcych proxy Socks 5.
 
 %prep
 %setup -q
