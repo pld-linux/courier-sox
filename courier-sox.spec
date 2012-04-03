@@ -5,7 +5,7 @@ Version:	0.10
 Release:	1
 License:	GPL
 Group:		Networking/Daemons
-Source0:	http://dl.sourceforge.net/courier/%{name}-%{version}.tar.bz2
+Source0:	http://downloads.sourceforge.net/courier/%{name}-%{version}.tar.bz2
 # Source0-md5:	7526b08d7eb6a797dad9b299934a09c3
 Patch0:		%{name}-init.patch
 URL:		http://www.courier-mta.org
