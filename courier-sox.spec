@@ -1,14 +1,13 @@
 Summary:	Courier Socks 5 client library
 Summary(pl.UTF-8):	Biblioteki klienckie Socks 5
 Name:		courier-sox
-Version:	0.07
+Version:	0.10
 Release:	1
 License:	GPL
 Group:		Networking/Daemons
 Source0:	http://dl.sourceforge.net/courier/%{name}-%{version}.tar.bz2
-# Source0-md5:	1aa81e4c3a7473f6a88974f58a1cb563
-Patch0:		%{name}-build.patch
-Patch1:		%{name}-init.patch
+# Source0-md5:	7526b08d7eb6a797dad9b299934a09c3
+Patch0:		%{name}-init.patch
 URL:		http://www.courier-mta.org
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -73,7 +72,6 @@ używających proxy Socks 5.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__libtoolize}
@@ -124,6 +122,7 @@ fi
 %{_mandir}/man1/socksify*
 %{_mandir}/man3/socks*
 %{_mandir}/man5/*
+%{_mandir}/man8/mkbl4*
 %{_sysconfdir}/socksrc
 
 %files devel
