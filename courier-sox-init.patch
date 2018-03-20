@@ -1,38 +1,114 @@
-diff -Nur old/courier-sox.sysvinit.in new/courier-sox.sysvinit.in
---- old/courier-sox.sysvinit.in	2004-12-05 02:24:29.000000000 +0000
-+++ new/courier-sox.sysvinit.in	2005-04-16 19:09:43.000000000 +0000
-@@ -5,6 +5,9 @@
- #
- #
+--- courier-sox-0.12/courier-sox.sysvinit.in.orig	2013-08-25 20:57:39.000000000 +0200
++++ courier-sox-0.12/courier-sox.sysvinit.in	2018-03-20 18:43:13.183970169 +0100
+@@ -14,31 +14,92 @@
+ datarootdir="@datarootdir@"
+ datadir="@datadir@"
  
+-case "$1" in
+-start)
+-        cd /
+-        # Start daemons.
+-        touch /var/lock/subsys/courier-sox
 +# Source function library
 +. /etc/rc.d/init.d/functions
 +
- prefix="@prefix@"
- exec_prefix="@exec_prefix@"
- sysconfdir="@sysconfdir@"
-@@ -29,15 +32,23 @@
++# Get network config
++. /etc/sysconfig/network
++
++# Check that networking is up.
++if is_yes "${NETWORKING}"; then
++	if [ ! -f /var/lock/subsys/network -a "$1" != stop -a "$1" != status ]; then
++		msg_network_down "Courier Socks"
++		exit 1
++	fi
++else
++	exit 0
++fi
++
++# Get service config
++[ -f /etc/sysconfig/courier-sox ] && . /etc/sysconfig/courier-sox
++
++start() {
++	if [ -f /var/lock/subsys/courier-sox ]; then
++		msg_already_running "Courier Socks"
++		return
++	fi
++
++	cd /
++	$sbindir/sockd start && ok || fail
++	RETVAL=$?
++	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/courier-sox
++}
  
- 	$sbindir/sockd stop
- 	echo "sockd"
+-        echo -n "Starting the Courier Socks server: "
++stop() {
++	if [ ! -f /var/lock/subsys/courier-sox ]; then
++		msg_not_running "Courier Socks"
++		return
++	fi
++	msg_stopping "Courier Socks"
++	$sbindir/sockd stop && ok || fail
 +	rm -f /var/lock/subsys/courier-sox
++}
+ 
+-	$sbindir/sockd start
+-	echo "sockd"
++reload() {
++	if [ ! -f /var/lock/subsys/courier-sox ]; then
++		msg_not_running "Courier Socks"
++		RETVAL=7
++		return
++	fi
++
++	msg_reloading "Courier Socks"
++	$sbindir/sockd restart && ok || fail
++	RETVAL=$?
++}
++
++condrestart() {
++	if [ ! -f /var/lock/subsys/courier-sox ]; then
++		msg_not_running "Courier Socks"
++		RETVAL=$1
++		return
++	fi
++	stop
++	start
++}
++
++case "$1" in
++start)
++	start
+         ;;
+ stop)
+-        echo -n "Stopping the Courier Socks server: "
+-
+-	$sbindir/sockd stop
+-	echo "sockd"
++	stop
          ;;
  restart)
- 	$0 stop
- 	$0 start
+-	$0 stop
+-	$0 start
++	stop
++	start
          ;;
 -reload)
+-        echo -n "Reloading the Courier Socks server: "
+-	$sbindir/sockd restart
+-	echo "sockd"
++try-restart)
++	condrestart 0
++	;;
 +reload|force-reload)
-         echo -n "Reloading the Courier Socks server: "
- 	$sbindir/sockd restart
- 	echo "sockd"
++        reload
          ;;
 +status)
 +        status sockd
-+	exit $?
++	RETVAL=$?
 +	;;
 +*)
-+        msg_usage "$0 {start|stop|restart|reload|force-reload|status}"
++        msg_usage "$0 {start|stop|restart|try-restart|reload|force-reload|status}"
 +	exit 3
  esac
- exit 0
+-exit 0
++exit $RETVAL
