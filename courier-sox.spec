@@ -8,7 +8,7 @@ Summary:	Courier Socks 5 client libraries
 Summary(pl.UTF-8):	Biblioteki klienckie Socks 5
 Name:		courier-sox
 Version:	0.12
-Release:	1
+Release:	2
 License:	GPL v3 with OpenSSL exception
 Group:		Networking/Utilities
 Source0:	http://downloads.sourceforge.net/courier/%{name}-%{version}.tar.bz2
@@ -63,7 +63,8 @@ Summary(pl.UTF-8):	Serwer socks 5
 Group:		Networking/Daemons
 Requires(post,preun):	/sbin/chkconfig
 Requires:	%{name} = %{version}-%{release}
-Requires:	courier-authlib-libs >= 0.56.20050702
+# requires library and courierlogger
+Requires:	courier-authlib >= 0.56.20050702
 
 %description server
 This package contains the Courier Socks 5 server.

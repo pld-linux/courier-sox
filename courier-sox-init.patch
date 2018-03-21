@@ -1,6 +1,6 @@
 --- courier-sox-0.12/courier-sox.sysvinit.in.orig	2013-08-25 20:57:39.000000000 +0200
 +++ courier-sox-0.12/courier-sox.sysvinit.in	2018-03-20 18:43:13.183970169 +0100
-@@ -14,31 +14,92 @@
+@@ -14,31 +14,93 @@
  datarootdir="@datarootdir@"
  datadir="@datadir@"
  
@@ -35,6 +35,7 @@
 +	fi
 +
 +	cd /
++	msg_starting "Courier Socks"
 +	$sbindir/sockd start && ok || fail
 +	RETVAL=$?
 +	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/courier-sox
