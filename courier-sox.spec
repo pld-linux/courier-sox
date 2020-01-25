@@ -3,7 +3,6 @@
 %bcond_without	static_libs	# static libraries
 %bcond_without	tests		# "make check"
 
-%include	/usr/lib/rpm/macros.perl
 Summary:	Courier Socks 5 client libraries
 Summary(pl.UTF-8):	Biblioteki klienckie Socks 5
 Name:		courier-sox
