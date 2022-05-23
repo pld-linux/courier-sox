@@ -14,7 +14,7 @@ Source0:	https://downloads.sourceforge.net/courier/%{name}-%{version}.tar.bz2
 # Source0-md5:	76576113168d9451940aa41fdd3b9141
 Patch0:		%{name}-init.patch
 URL:		http://www.courier-mta.org/
-BuildRequires:	courier-authlib-devel >= 0.56.20050702
+BuildRequires:	courier-authlib-devel >= 0.71
 BuildRequires:	gdbm-devel
 BuildRequires:	libltdl-devel >= 2:2.0
 BuildRequires:	perl-base
@@ -63,7 +63,7 @@ Group:		Networking/Daemons
 Requires(post,preun):	/sbin/chkconfig
 Requires:	%{name} = %{version}-%{release}
 # requires library and courierlogger
-Requires:	courier-authlib >= 0.56.20050702
+Requires:	courier-authlib >= 0.71
 
 %description server
 This package contains the Courier Socks 5 server.
