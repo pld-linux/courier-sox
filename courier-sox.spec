@@ -6,12 +6,12 @@
 Summary:	Courier Socks 5 client libraries
 Summary(pl.UTF-8):	Biblioteki klienckie Socks 5
 Name:		courier-sox
-Version:	0.18
+Version:	0.19
 Release:	1
 License:	GPL v3 with OpenSSL exception
 Group:		Networking/Utilities
 Source0:	https://downloads.sourceforge.net/courier/%{name}-%{version}.tar.bz2
-# Source0-md5:	3fdec8533474aac2e9d6864bb79657f8
+# Source0-md5:	3c4a2947c8c9ac8f9b05b93ae9c72a0f
 Patch0:		%{name}-init.patch
 URL:		http://www.courier-mta.org/
 BuildRequires:	courier-authlib-devel >= 0.71
