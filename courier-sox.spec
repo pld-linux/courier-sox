@@ -73,7 +73,7 @@ Ten pakiet zawiera serwer Courier Socks 5.
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 %configure \
