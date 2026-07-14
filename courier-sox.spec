@@ -1,22 +1,23 @@
 #
 # Conditional build:
 %bcond_without	static_libs	# static libraries
-%bcond_without	tests		# "make check"
+%bcond_without	tests		# unit tests
 
 Summary:	Courier Socks 5 client libraries
 Summary(pl.UTF-8):	Biblioteki klienckie Socks 5
 Name:		courier-sox
-Version:	0.19
+Version:	0.21
 Release:	1
 License:	GPL v3 with OpenSSL exception
 Group:		Networking/Utilities
 Source0:	https://downloads.sourceforge.net/courier/%{name}-%{version}.tar.bz2
-# Source0-md5:	3c4a2947c8c9ac8f9b05b93ae9c72a0f
+# Source0-md5:	da102fcfae9c3de54ef1219a55458108
 Patch0:		%{name}-init.patch
 URL:		http://www.courier-mta.org/
 BuildRequires:	courier-authlib-devel >= 0.71
 BuildRequires:	gdbm-devel
 BuildRequires:	libltdl-devel >= 2:2.0
+BuildRequires:	libstdc++-devel >= 6:7
 BuildRequires:	perl-base
 BuildRequires:	rpm-perlprov
 BuildRequires:	rpmbuild(macros) >= 1.268
@@ -92,7 +93,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install -D courier-sox.sysvinit $RPM_BUILD_ROOT/etc/rc.d/init.d/courier-sox
+install -Dp courier-sox.sysvinit $RPM_BUILD_ROOT/etc/rc.d/init.d/courier-sox
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -115,10 +116,10 @@ fi
 %doc AUTHORS ChangeLog NEWS README *.html
 %attr(755,root,root) %{_bindir}/mkbl4
 %attr(755,root,root) %{_bindir}/socksify
-%attr(755,root,root) %{_libdir}/libsocks.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libsocks.so.0
-%attr(755,root,root) %{_libdir}/libsockswrap.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libsockswrap.so.0
+%{_libdir}/libsocks.so.*.*.*
+%ghost %{_libdir}/libsocks.so.0
+%{_libdir}/libsockswrap.so.*.*.*
+%ghost %{_libdir}/libsockswrap.so.0
 %{_mandir}/man1/socksify.1*
 %{_mandir}/man5/socksrc.5*
 %{_mandir}/man8/mkbl4.8*
@@ -127,8 +128,8 @@ fi
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libsocks.so
-%attr(755,root,root) %{_libdir}/libsockswrap.so
+%{_libdir}/libsocks.so
+%{_libdir}/libsockswrap.so
 %{_libdir}/libsocks.la
 %{_libdir}/libsockswrap.la
 %{_includedir}/socks.h
